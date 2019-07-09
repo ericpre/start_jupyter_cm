@@ -3,6 +3,7 @@ import sys
 import stat
 from subprocess import call
 import shutil
+import pathlib
 
 from .utils import get_environment_label
 
@@ -111,7 +112,7 @@ def add_jupyter_here():
 
     if KDE:
         if not os.path.exists(KPATH):
-            os.mkdir(KPATH)
+            pathlib.Path(KPATH).mkdir(parents=True)
         for terminal in ["qtconsole", "notebook", "lab"]:
             script_path = os.path.join(KPATH, "Jupyter_{}_here{}"
                                               "".format(terminal,

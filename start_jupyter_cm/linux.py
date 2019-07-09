@@ -10,14 +10,12 @@ from .utils import get_environment_label
 NPATH = os.path.expanduser("~/.local/share/nautilus")
 # User directories might not exist by default in KDE so detect root install:
 KPATH = "/usr/share/kservices5/ServiceMenus"
-no_supported_DE = True
+GNOME = KDE = False
 
 if os.path.isdir(NPATH):
     GNOME = True
-    no_supported_DE = False
 if os.path.isdir(KPATH):
     KDE = True
-    no_supported_DE = False
 
 if GNOME:
     SPATH = os.path.join(NPATH, "scripts")
@@ -25,7 +23,7 @@ if GNOME:
 if KDE:
     KPATH = os.path.expanduser("~/.local/share/kservices5/ServiceMenus")
 
-if no_supported_DE:
+if not GNOME and not KDE:
     raise EnvironmentError('start_jupyter_cm only supports Gnome (+ Nautilus '
                            'file manager) and KDE (+ Dolphin file manager) '
                            'desktop environments on Linux, and neither was '

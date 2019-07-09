@@ -6,19 +6,16 @@ import shutil
 
 from .utils import get_environment_label
 
-# Logic to detect desktop environments on Linux:
-NPATH = os.path.expanduser("~/.local/share/nautilus")
-# User directories might not exist by default in KDE so detect root install:
-KPATH = "/usr/share/kservices5/ServiceMenus"
 GNOME = KDE = False
 
-if os.path.isdir(NPATH):
+if shutil.which("nautilus"):
     GNOME = True
-if os.path.isdir(KPATH):
+if shutil.which("dolphin"):
     KDE = True
 
 if GNOME:
-    SPATH = os.path.join(NPATH, "scripts")
+    SPATH = os.path.join(os.path.expanduser("~/.local/share/nautilus"),
+                         "scripts")
 
 if KDE:
     KPATH = os.path.expanduser("~/.local/share/kservices5/ServiceMenus")

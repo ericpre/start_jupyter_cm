@@ -28,6 +28,11 @@ jobs:
             ENVIRONMENT_NAME: ''
             PACKAGE_MANAGER: conda
             LABEL: _base_env
+          - os: windows
+            PYTHON_VERSION: '3.8'
+            ENVIRONMENT_NAME: 'path with a space'
+            PACKAGE_MANAGER: conda
+            LABEL: _space_path
         exclude:
           # pip on macos doesn't seemt to play well with bash -l {0}, which is
           # required to use setup-miniconda

@@ -45,7 +45,7 @@ def remove_jupyter_here():
         print("Administrator privileges are required to uninstall the context "
               "menu shortcut")
     else:
-        # No context menu for all users found, uninstall for single user 
+        # No context menu for all users found, uninstall for single user
         _remove_jupyter_here(all_users=False)
 
 
@@ -109,7 +109,7 @@ def _add_jupyter_here(all_users):
                 script = os.path.join(os.environ["WINPYDIR"], "..",
                                       WPSCRIPTS_FOLDER,
                                       "env.bat")
-                script += " & jupyter-%s" % terminal
+                script += f" & python -m {terminal}"
             elif "CONDA_EXE" in os.environ:
                 # Calling from a conda environment, call activation script
                 # before executing script.
@@ -119,10 +119,10 @@ def _add_jupyter_here(all_users):
                 script += f'"{script0}"'
                 if CONDA_ENV_LABEL != "":
                     script += ' ' + os.environ["CONDA_DEFAULT_ENV"]
-                script += f' & jupyter-{terminal}.exe'
+                script += f' & python -m {terminal}'
             else:
-                path = f'{os.path.join(sys.prefix, "Scripts", f"jupyter-{terminal}.exe")}'
-                script = f'"{path}"'
+                path = os.path.join(sys.prefix, "python")
+                script = f'"{path} -m {terminal}"'
 
             key = winreg.CreateKey(
                 h_key_base,

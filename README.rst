@@ -11,7 +11,7 @@ start\_jupyter\_cm
    :target: https://pypi.python.org/pypi/start-jupyter-cm
    :alt: Supported python versions
 
-.. |conda-forge| image:: https://anaconda.org/conda-forge/start_jupyter_cm/badges/version.svg
+.. |conda-forge| image:: https://img.shields.io/conda/vn/conda-forge/start_jupyter_cm
    :target: https://anaconda.org/conda-forge/start_jupyter_cm
    :alt: Conda forge version
 
